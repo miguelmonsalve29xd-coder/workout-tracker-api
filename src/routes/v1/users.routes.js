@@ -50,5 +50,28 @@ router.post('/', (req, res) => {
   res.status(201).json(newUser);   // 5
 });
 
+// PUT /users/:id
+router.put('/:id', (req, res) => {
+  const { id } = req.params;              // 1
+  const { name, email, role } = req.body; // 2
+
+  const index = users.findIndex(u => u.id === id); // 3
+  if (index === -1) {                     // 4
+    return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+
+  if (!name || !email) {                  // 5
+    return res.status(400).json({ error: 'Name y email son requeridos' });
+  }
+
+  users[index] = {                        // 6
+    ...users[index], // conserva los datos previos
+    name,
+    email,
+    role
+  };
+
+  res.status(200).json(users[index]);     // 7
+});
 
 module.exports = router
