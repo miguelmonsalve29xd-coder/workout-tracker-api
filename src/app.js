@@ -1,14 +1,17 @@
-const express = require("express"); // Import express
-const app = express(); // Create an instance of express
+const express = require("express");
+const app = express();
 const { port } = require('./config/env');
+const routes = require('./routes');
 
-// Inicializacion del servidor y primera ruta
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   res.send("Hola mi server en Express");
 });
 
-// Inicio del servidor
+app.use('/api', routes);
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
-
