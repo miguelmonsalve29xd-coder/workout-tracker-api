@@ -7,6 +7,13 @@ let users = [
     email: "carlos@example.com",
     role: "user",
     createdAt: "2025-09-12T12:00:00Z"
+  },
+  {
+    id: "2",
+    name: "Miguel García",
+    email: "miguel@example.com",
+    role: "user",
+    createdAt: "2025-09-12T12:00:00Z"
   }
 ];
 
