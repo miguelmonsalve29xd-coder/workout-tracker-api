@@ -48,3 +48,34 @@ exports.createWorkout = (req, res) => {
   workouts.push(newWorkout);
   res.status(201).json(newWorkout);
 };
+
+// PUT /api/v1/workouts/:id (actualización completa)
+exports.updateWorkout = (req, res) => {
+  const { id } = req.params;
+  const { userId, name, date, duration, notes } = req.body;
+
+  const index = workouts.findIndex(w => w.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'Workout no encontrado' });
+  }
+
+  if (!userId || !name || !date) {
+    return res.status(400).json({ error: 'userId, name y date son requeridos' });
+  }
+
+  workouts[index] = { ...workouts[index], userId, name, date, duration, notes };
+  res.status(200).json(workouts[index]);
+};
+
+// PATCH /api/v1/workouts/:id (actualización parcial)
+exports.patchWorkout = (req, res) => {
+  const { id } = req.params;
+
+  const index = workouts.findIndex(w => w.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'Workout no encontrado' });
+  }
+
+  workouts[index] = { ...workouts[index], ...req.body };
+  res.status(200).json(workouts[index]);
+};
