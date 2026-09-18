@@ -12,9 +12,26 @@ let workouts = [
   }
 ];
 
-// GET /api/v1/workouts?userId=1&date=2025-09-20
+// GET /api/v1/workouts?userId=1&date=2025-09-20&search=pecho
 exports.getAllWorkouts = (req, res) => {
-  res.status(200).json(workouts);
+  const { userId, date, search } = req.query;
+  let result = [...workouts];
+
+  if (userId) {
+    result = result.filter(w => w.userId === userId);
+  }
+
+  if (date) {
+    result = result.filter(w => w.date === date);
+  }
+
+  if (search) {
+    result = result.filter(w =>
+      w.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  res.status(200).json(result);
 };
 
 // GET /api/v1/workouts/:id
