@@ -12,9 +12,17 @@ let workouts = [
   }
 ];
 
-// GET /api/v1/workouts
+// GET /api/v1/workouts?userId=1&date=2025-09-20
 exports.getAllWorkouts = (req, res) => {
   res.status(200).json(workouts);
 };
 
-module.exports = exports;
+// GET /api/v1/workouts/:id
+exports.getWorkoutById = (req, res) => {
+  const { id } = req.params;
+  const workout = workouts.find(w => w.id === id);
+  if (!workout) {
+    return res.status(404).json({ error: 'Workout no encontrado' });
+  }
+  res.status(200).json(workout);
+};
