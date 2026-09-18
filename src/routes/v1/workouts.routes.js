@@ -10,4 +10,7 @@ router.get('/', workoutsController.getAllWorkouts);
 // GET /api/v1/workouts/:id
 router.get('/:id', workoutsController.getWorkoutById);
 
+// POST /api/v1/workouts
+router.post('/', workoutsController.createWorkout);
+
 module.exports = router;

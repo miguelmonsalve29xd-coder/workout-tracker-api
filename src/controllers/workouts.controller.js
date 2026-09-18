@@ -26,3 +26,25 @@ exports.getWorkoutById = (req, res) => {
   }
   res.status(200).json(workout);
 };
+
+// POST /api/v1/workouts
+exports.createWorkout = (req, res) => {
+  const { userId, name, date, duration, notes } = req.body;
+
+  if (!userId || !name || !date) {
+    return res.status(400).json({ error: 'userId, name y date son requeridos' });
+  }
+
+  const newWorkout = {
+    id: `${Date.now()}`,
+    userId,
+    name,
+    date,
+    duration: duration || 0,
+    notes: notes || '',
+    createdAt: new Date().toISOString()
+  };
+
+  workouts.push(newWorkout);
+  res.status(201).json(newWorkout);
+};
