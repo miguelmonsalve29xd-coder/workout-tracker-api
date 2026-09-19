@@ -11,9 +11,27 @@ let exercises = [
   }
 ];
 
-// GET /api/v1/exercises
+
+// GET /api/v1/exercises?muscleGroup=pecho&search=press&difficulty=intermedio
 exports.getAllExercises = (req, res) => {
-  res.status(200).json(exercises);
+  const { muscleGroup, search, difficulty } = req.query;
+  let result = [...exercises];
+
+  if (muscleGroup) {
+    result = result.filter(e => e.muscleGroup === muscleGroup);
+  }
+
+  if (difficulty) {
+    result = result.filter(e => e.difficulty === difficulty);
+  }
+
+  if (search) {
+    result = result.filter(e =>
+      e.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  res.status(200).json(result);
 };
 
 // GET /api/v1/exercises/:id
