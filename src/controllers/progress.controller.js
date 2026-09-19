@@ -27,3 +27,26 @@ exports.getProgressById = (req, res) => {
   }
   res.status(200).json(entry);
 };
+
+// POST /api/v1/progress
+exports.createProgress = (req, res) => {
+  const { userId, workoutId, weight, reps, date, notes } = req.body;
+
+  if (!userId || !workoutId || !date) {
+    return res.status(400).json({ error: 'userId, workoutId y date son requeridos' });
+  }
+
+  const newProgress = {
+    id: `${Date.now()}`,
+    userId,
+    workoutId,
+    weight: weight || 0,
+    reps: reps || 0,
+    date,
+    notes: notes || '',
+    createdAt: new Date().toISOString()
+  };
+
+  progress.push(newProgress);
+  res.status(201).json(newProgress);
+};
