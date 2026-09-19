@@ -17,3 +17,13 @@ let progress = [
 exports.getAllProgress = (req, res) => {
   res.status(200).json(progress);
 };
+
+// GET /api/v1/progress/:id
+exports.getProgressById = (req, res) => {
+  const { id } = req.params;
+  const entry = progress.find(p => p.id === id);
+  if (!entry) {
+    return res.status(404).json({ error: 'Registro de progreso no encontrado' });
+  }
+  res.status(200).json(entry);
+};
