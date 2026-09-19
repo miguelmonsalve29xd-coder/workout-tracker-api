@@ -7,5 +7,6 @@ router.get('/:id', exercisesController.getExerciseById);
 router.post('/', exercisesController.createExercise);
 router.put('/:id', exercisesController.updateExercise);
 router.patch('/:id', exercisesController.patchExercise);
+router.delete('/:id', exercisesController.deleteExercise);
 
 module.exports = router;
