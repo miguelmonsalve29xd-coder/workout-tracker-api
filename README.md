@@ -40,3 +40,26 @@ curl -X POST http://localhost:8000/api/v1/users \
 curl -X POST http://localhost:8000/api/v1/workouts \
   -H "Content-Type: application/json" \
   -d '{"userId":"1","name":"Pierna","date":"2025-09-21"}'
+
+  ## Endpoints de Exercises
+
+| Método | Endpoint | Descripción | Body | Status |
+|--------|----------|-------------|------|--------|
+| GET | /api/v1/exercises | Lista ejercicios | — | 200 |
+| GET | /api/v1/exercises/:id | Obtiene uno | — | 200, 404 |
+| POST | /api/v1/exercises | Crea ejercicio | `{name, muscleGroup, equipment?, difficulty?}` | 201, 400 |
+| PUT | /api/v1/exercises/:id | Actualiza completo | `{name, muscleGroup, equipment, difficulty}` | 200, 400, 404 |
+| PATCH | /api/v1/exercises/:id | Actualiza parcial | `{...campos}` | 200, 404 |
+| DELETE | /api/v1/exercises/:id | Elimina | — | 204, 404 |
+
+### Filtros disponibles
+- `?muscleGroup=pecho`
+- `?difficulty=intermedio`
+- `?search=press`
+
+### Ejemplo request POST
+
+```bash
+curl -X POST http://localhost:8000/api/v1/exercises \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Sentadilla","muscleGroup":"pierna","equipment":"barra"}'
