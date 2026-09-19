@@ -13,9 +13,25 @@ let progress = [
   }
 ];
 
-// GET /api/v1/progress
+
+// GET /api/v1/progress?userId=1&workoutId=1&date=2025-09-20
 exports.getAllProgress = (req, res) => {
-  res.status(200).json(progress);
+  const { userId, workoutId, date } = req.query;
+  let result = [...progress];
+
+  if (userId) {
+    result = result.filter(p => p.userId === userId);
+  }
+
+  if (workoutId) {
+    result = result.filter(p => p.workoutId === workoutId);
+  }
+
+  if (date) {
+    result = result.filter(p => p.date === date);
+  }
+
+  res.status(200).json(result);
 };
 
 // GET /api/v1/progress/:id
