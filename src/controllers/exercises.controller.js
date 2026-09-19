@@ -25,3 +25,24 @@ exports.getExerciseById = (req, res) => {
   }
   res.status(200).json(exercise);
 };
+
+// POST /api/v1/exercises
+exports.createExercise = (req, res) => {
+  const { name, muscleGroup, equipment, difficulty } = req.body;
+
+  if (!name || !muscleGroup) {
+    return res.status(400).json({ error: 'name y muscleGroup son requeridos' });
+  }
+
+  const newExercise = {
+    id: `${Date.now()}`,
+    name,
+    muscleGroup,
+    equipment: equipment || '',
+    difficulty: difficulty || 'principiante',
+    createdAt: new Date().toISOString()
+  };
+
+  exercises.push(newExercise);
+  res.status(201).json(newExercise);
+};
