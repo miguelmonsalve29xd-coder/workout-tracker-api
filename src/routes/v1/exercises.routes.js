@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const exercisesController = require('../../controllers/exercises.controller');
 
-// GET /api/v1/exercises
 router.get('/', exercisesController.getAllExercises);
+router.get('/:id', exercisesController.getExerciseById);
 
 module.exports = router;
