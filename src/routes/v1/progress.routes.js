@@ -7,5 +7,6 @@ router.get('/:id', progressController.getProgressById);
 router.post('/', progressController.createProgress);
 router.put('/:id', progressController.updateProgress);
 router.patch('/:id', progressController.patchProgress);
+router.delete('/:id', progressController.deleteProgress);
 
 module.exports = router;
