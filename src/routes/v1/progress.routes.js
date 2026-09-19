@@ -5,5 +5,7 @@ const progressController = require('../../controllers/progress.controller');
 router.get('/', progressController.getAllProgress);
 router.get('/:id', progressController.getProgressById);
 router.post('/', progressController.createProgress);
+router.put('/:id', progressController.updateProgress);
+router.patch('/:id', progressController.patchProgress);
 
 module.exports = router;

@@ -50,3 +50,32 @@ exports.createProgress = (req, res) => {
   progress.push(newProgress);
   res.status(201).json(newProgress);
 };
+
+// PUT /api/v1/progress/:id
+exports.updateProgress = (req, res) => {
+  const { id } = req.params;
+  const { userId, workoutId, weight, reps, date, notes } = req.body;
+
+  const index = progress.findIndex(p => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'Registro de progreso no encontrado' });
+  }
+
+  if (!userId || !workoutId || !date) {
+    return res.status(400).json({ error: 'userId, workoutId y date son requeridos' });
+  }
+
+  progress[index] = { ...progress[index], userId, workoutId, weight, reps, date, notes };
+  res.status(200).json(progress[index]);
+};
+
+// PATCH /api/v1/progress/:id
+exports.patchProgress = (req, res) => {
+  const { id } = req.params;
+  const index = progress.findIndex(p => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'Registro de progreso no encontrado' });
+  }
+  progress[index] = { ...progress[index], ...req.body };
+  res.status(200).json(progress[index]);
+};
