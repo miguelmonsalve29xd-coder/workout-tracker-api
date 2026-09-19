@@ -63,3 +63,26 @@ curl -X POST http://localhost:8000/api/v1/workouts \
 curl -X POST http://localhost:8000/api/v1/exercises \
   -H "Content-Type: application/json" \
   -d '{"name":"Sentadilla","muscleGroup":"pierna","equipment":"barra"}'
+
+  ## Endpoints de Progress
+
+| Método | Endpoint | Descripción | Body | Status |
+|--------|----------|-------------|------|--------|
+| GET | /api/v1/progress | Lista registros | — | 200 |
+| GET | /api/v1/progress/:id | Obtiene uno | — | 200, 404 |
+| POST | /api/v1/progress | Crea registro | `{userId, workoutId, weight?, reps?, date, notes?}` | 201, 400 |
+| PUT | /api/v1/progress/:id | Actualiza completo | `{userId, workoutId, weight, reps, date, notes}` | 200, 400, 404 |
+| PATCH | /api/v1/progress/:id | Actualiza parcial | `{...campos}` | 200, 404 |
+| DELETE | /api/v1/progress/:id | Elimina | — | 204, 404 |
+
+### Filtros disponibles
+- `?userId=1`
+- `?workoutId=1`
+- `?date=2025-09-20`
+
+### Ejemplo request POST
+
+```bash
+curl -X POST http://localhost:8000/api/v1/progress \
+  -H "Content-Type: application/json" \
+  -d '{"userId":"1","workoutId":"1","weight":85,"reps":12,"date":"2025-09-21"}'
