@@ -14,7 +14,7 @@
 ### Ejemplo request POST
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/users \
+curl -X POST http://localhost:8001/api/v1/users \
   -H "Content-Type: application/json" \
   -d '{"name":"Ana","email":"miguel@example.com"}'
 
@@ -37,7 +37,7 @@ curl -X POST http://localhost:8000/api/v1/users \
 ### Ejemplo request POST
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/workouts \
+curl -X POST http://localhost:8001/api/v1/workouts \
   -H "Content-Type: application/json" \
   -d '{"userId":"1","name":"Pierna","date":"2025-09-21"}'
 
@@ -60,7 +60,7 @@ curl -X POST http://localhost:8000/api/v1/workouts \
 ### Ejemplo request POST
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/exercises \
+curl -X POST http://localhost:8001/api/v1/exercises \
   -H "Content-Type: application/json" \
   -d '{"name":"Sentadilla","muscleGroup":"pierna","equipment":"barra"}'
 
@@ -83,6 +83,6 @@ curl -X POST http://localhost:8000/api/v1/exercises \
 ### Ejemplo request POST
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/progress \
+curl -X POST http://localhost:8001/api/v1/progress \
   -H "Content-Type: application/json" \
   -d '{"userId":"1","workoutId":"1","weight":85,"reps":12,"date":"2025-09-21"}'

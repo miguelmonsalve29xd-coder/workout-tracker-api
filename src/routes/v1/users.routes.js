@@ -1,14 +1,25 @@
-// src/routes/v1/workouts.routes.js
+// src/routes/v1/users.routes.js
 
 const express = require('express');
 const router = express.Router();
-const workoutsController = require('../../controllers/workouts.controller');
+const usersController = require('../../controllers/users.controller');
 
-router.get('/', workoutsController.getAllWorkouts);
-router.get('/:id', workoutsController.getWorkoutById);
-router.post('/', workoutsController.createWorkout);
-router.put('/:id', workoutsController.updateWorkout);
-router.patch('/:id', workoutsController.patchWorkout);
-router.delete('/:id', workoutsController.deleteWorkout);
+// GET /api/v1/users?role=user&search=Carlos
+router.get('/', usersController.getAllUsers);
+
+// GET /api/v1/users/:id
+router.get('/:id', usersController.getUserById);
+
+// POST /api/v1/users
+router.post('/', usersController.createUser);
+
+// PUT /api/v1/users/:id
+router.put('/:id', usersController.updateUser);
+
+// PATCH /api/v1/users/:id
+router.patch('/:id', usersController.patchUser);
+
+// DELETE /api/v1/users/:id
+router.delete('/:id', usersController.deleteUser);
 
 module.exports = router;

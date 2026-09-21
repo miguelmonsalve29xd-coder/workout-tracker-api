@@ -9,6 +9,15 @@ let workouts = [
     duration: 45,
     notes: "Buena sesión",
     createdAt: "2025-09-20T10:00:00Z"
+  },
+  {
+    id: "2",
+    userId: "2",
+    name: "Rutina de pierna",
+    date: "2025-09-20",
+    duration: 65,
+    notes: "Buena sesión",
+    createdAt: "2025-09-20T10:00:00Z"
   }
 ];
 
